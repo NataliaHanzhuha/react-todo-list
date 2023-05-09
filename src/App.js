@@ -3,27 +3,22 @@ import './App.css';
 import { TodoItem } from './TodoItem';
 
 function App() {
-  let [todos, setTodos] = useState([
-    {
-      title: 'task1',
-      checked: false
-    },
-    {
-      title: 'task2',
-      checked: false
-    },
-    {
-      title: 'task3',
-      checked: false
-    },
-  ])
+  const TODOS_KEY = 'todos';
+  const [todos, setTodos] = useState(savedTodos())
   const [isNewItem, setNewItem] = useState(false)
   const [title, setTitle] = useState('');
 
+  function savedTodos() {
+    const savedTodosList = localStorage.getItem(TODOS_KEY);
+    const list = JSON.parse(savedTodosList);
+
+    return list ?? [];
+  }
+  
   function deleteTask(index) {
     const newTodos = todos.filter((todo, i) => i !== index);
 
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   function toggleTodo(title) {
@@ -34,7 +29,7 @@ function App() {
       return todo;
     });
 
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   function addTodo() {
@@ -42,7 +37,7 @@ function App() {
       title,
       checked: false
     }
-    setTodos([newItem, ...todos]);
+    saveTodos([newItem, ...todos]);
     cancelNewItem();
   }
 
@@ -55,6 +50,11 @@ function App() {
     if (event.key === 'Enter') {
       addTodo();
     }
+  }
+
+  function saveTodos(newTodos) {
+    localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
+    setTodos(newTodos);
   }
 
 
