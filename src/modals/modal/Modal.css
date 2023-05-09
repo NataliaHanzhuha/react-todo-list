@@ -1,0 +1,88 @@
+.modal-wrapper button {
+    background-color: transparent;
+    border: 2px solid;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+
+}
+
+.modal-wrapper {
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #0c0c0c94;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-window {
+    width: 400px;
+    min-width: 250px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: antiquewhite;
+    padding: 15px;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 20px;
+}
+
+.modal-content {
+    font-size: 20px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    padding: 10px 0;
+}
+
+.modal-window button {
+    background-color: transparent;
+    border: 2px solid;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.modal-window button:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.default-btn {
+    border-color: gray;
+    color: gray;
+}
+
+.danger-btn {
+    border-color: red;
+    color: red;
+}
+
+.primary-btn {
+    color: #e38f30;
+    border-color: #e38f30;
+}
