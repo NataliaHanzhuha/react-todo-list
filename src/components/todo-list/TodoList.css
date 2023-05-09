@@ -1,0 +1,129 @@
+
+header {
+    padding: 10px 40px;
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    color: rosybrown;
+    font-weight: 700;
+    background-color: bisque;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #e38f30;
+}
+h2 {
+    color: darkgray;
+    border-bottom: 5px dotted gray;
+    padding-bottom: 10px;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
+    background-color: transparent;
+    border: 2px solid #e38f30;
+    color: darkslategray;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 50px;
+    min-height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 20px;
+    width: 100%;
+    flex: 1;
+    margin: 0 auto;
+}
+
+.list-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    max-width: 400px;
+    width: 100%;
+    gap: 10px;
+}
+
+.add-btn {
+    margin: 30px 0;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-radius: 10px;
+    border: 2px solid #e2cb6d;
+    background-color: transparent;
+    color: #e2cb6d;
+    cursor: pointer;
+}
+
+.save-btn,
+.cancel-btn {
+    padding: 10px;
+    font-size: 20px;
+    border: 2px solid;
+    background-color: transparent;
+    border-radius: 0 10px 10px 0;
+    font-weight: 900;
+    border-left: none;
+    cursor: pointer;
+}
+
+.save-btn {
+    border-radius: 0;
+    color: #e38f30;
+}
+
+.save-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.cancel-btn {
+    color: gray;
+    border-color: gray;
+}
+
+.add-item-wrapper {
+    display: flex;
+    width: 100%;
+    margin: 30px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 25px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+}
