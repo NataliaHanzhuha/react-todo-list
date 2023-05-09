@@ -1,12 +1,12 @@
 import './App.css';
-import { TodoList } from './components/todo-list/TodoList';
+import { TodoDashboard } from './components/TodoDashboard/TodoDashboard';
 
 function App() {
 
 
   return (
     <>
-      <TodoList></TodoList>
+      <TodoDashboard></TodoDashboard>
     </>
   );
 }
