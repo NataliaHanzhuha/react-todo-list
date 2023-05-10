@@ -1,4 +1,4 @@
-import './styles/TodoItem.css';
+import './TodoItem.css';
 
 export function TodoItem({ todo, deleteTodo, toggleTodo }) {
     const checkedClass = todo.checked ? 'checked' : ''
