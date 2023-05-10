@@ -1,0 +1,42 @@
+
+input[type="checkbox"] {
+    width: 18px;
+    cursor: pointer;
+}
+
+
+.todo-item {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+.checked {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.gray {
+    color: gray;
+}
+
+.title {
+    flex: 1;
+}
+
+.btn {
+    padding: 3px 10px;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+.btn-wrapper{
+    width: auto !important;
+}

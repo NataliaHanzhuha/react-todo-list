@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import './TodoDashboard.css';
+import { NewTodoForm } from '../NewTodoForm/NewTodoForm';
 import { TodoList } from '../TodoList/TodoList';
-import { AddTodoModal } from '../../modals/add-todo-modal/AddTodoModal';
 
 export function TodoDashboard() {
   const TODOS_KEY = 'todos';
   const LSTodos = JSON.parse(localStorage.getItem(TODOS_KEY)) ?? [];
   const [todos, setTodos] = useState(LSTodos)
-  const [isOpen, toggleOpen] = useState(false)
 
   useEffect(() => {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos))
@@ -27,23 +26,19 @@ export function TodoDashboard() {
         <h1>To Do List</h1>
       </header>
 
-      <button
-        className="add-btn"
-        onClick={() => toggleOpen(true)}>
-        Add Todo Item
-      </button>
-
-      {isOpen && <AddTodoModal
-        isOpen={isOpen}
-        toggleOpen={() => toggleOpen(false)}
-        addTodo={(title) => addTodo(title)}></AddTodoModal>}
+      <NewTodoForm addTodo={(title) => addTodo(title)}></NewTodoForm>
 
       <div className='wrapper'>
 
-        <TodoList
+          <TodoList isDone={false} 
+          title='In Progress'
           todos={todos}
-          setTodos={(newTodos) => { setTodos(newTodos) }}></TodoList>
+          setTodos={(newTodos) => setTodos(newTodos)}></TodoList>
 
+          <TodoList isDone={true} 
+          title='Done'
+          todos={todos}
+          setTodos={(newTodos) => setTodos(newTodos)}></TodoList>
       </div>
 
       <footer>
