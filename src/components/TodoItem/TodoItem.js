@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { DeleteTodoModal } from '../../modals/delete-todo-modal/DeleteTodoModal';
+import { DeleteTodoModal } from '../../modals/DeleteTodoModal/DeleteTodoModal';
 import './TodoItem.css';
-import { EditTodoModal } from '../../modals/edit-todo-modal/EditTodoModal';
+import { EditTodoModal } from '../../modals/EditTodoModal/EditTodoModal';
 
 
 export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
@@ -31,7 +31,7 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
             {isDeleteModalOpen && <DeleteTodoModal
                 toggleOpen={() => toggleDeleteModalOpen(false)}
                 title={todo.title}
-                deleteTodo={() => { deleteTodo(); toggleDeleteModalOpen(false) }}
+                deleteTodo={deleteTodo}
             />}
 
             {isEditModalOpen && <EditTodoModal

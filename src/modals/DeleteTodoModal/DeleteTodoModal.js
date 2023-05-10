@@ -1,4 +1,4 @@
-import { Modal } from '../modal/Modal';
+import { Modal } from '../Modal/Modal';
 import './DeleteTodoModal.css';
 
 export function DeleteTodoModal({title, toggleOpen, deleteTodo }) {

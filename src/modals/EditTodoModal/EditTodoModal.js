@@ -1,23 +1,23 @@
-import './AddTodoModal.css'
-import { Modal } from '../modal/Modal';
-import { useForm } from "react-hook-form";
+import './EditTodoModal.css'
+import { Modal } from '../Modal/Modal';
+import {useForm} from 'react-hook-form';
 
-export function AddTodoModal({ isOpen, toggleOpen, addTodo }) {
+export function EditTodoModal({ editedTitle, toggleOpen, editTodo }) {
     const { register, handleSubmit, getValues, formState } = useForm({
-        defaultValues: {title: ''}
+        defaultValues: {title: editedTitle}
       });
-
-    const onSubmit = handleSubmit((data) => {
-        addTodo(data.title); 
-        toggleOpen()
-    })
     
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
-          addTodo(getValues('title'));
-          toggleOpen()
+          editTodo(getValues('title'));
+          toggleOpen();
         }
-      }
+    }
+
+    const onSubmit = handleSubmit((data) => {
+        editTodo(data.title); 
+        toggleOpen()
+    })
 
     const body = (
         <div className='content-wrapper'>
@@ -31,7 +31,7 @@ export function AddTodoModal({ isOpen, toggleOpen, addTodo }) {
             <div className="btn-wrapper">
                 <button
                     className='primary-btn'
-                    onClick={handleSubmit(onSubmit)}
+                    onClick={onSubmit}
                     disabled={!formState.isValid}
                 >Save</button>
                 <button
@@ -42,10 +42,8 @@ export function AddTodoModal({ isOpen, toggleOpen, addTodo }) {
             </div>
         </div>
     )
-    
     return (
-        <Modal isOpen={isOpen}
-            modalTitle='Add Todo'
+        <Modal modalTitle='Edit Todo'
             toggleOpen={toggleOpen}
             content={body}></Modal>
     )

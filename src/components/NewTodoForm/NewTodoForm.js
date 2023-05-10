@@ -1,49 +1,20 @@
-import { useState } from "react"
+import { useState } from 'react';
+import { AddTodoModal } from '../../modals/AddTodoModal/AddTodoModal';
 
+export function NewTodoForm({ addTodo }) {
+  const [isAddModalOpen, toggleAddModalOpen] = useState(false)
 
-export function NewTodoForm({addTodo}) {
-    const [isNewItem, setNewItem] = useState(false)
-    const [title, setTitle] = useState('');
-
-    function handleKeyDown(event) {
-        if (event.key === 'Enter') {
-          addTodo();
-          cancelNewItem();
-        }
-      }
-
-      function cancelNewItem() {
-        setTitle('');
-        setNewItem(false);
-      }
-    
-    return (
-        <>
-        {
-         isNewItem
-              ? <div className='add-item-wrapper' >
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => {setTitle(e.target.value); cancelNewItem()}}
-                  onKeyDown={handleKeyDown}
-                ></input>
-                <button
-                  className='save-btn'
-                  onClick={addTodo}
-                  disabled={!title.trim().length}
-                >Save</button>
-                <button
-                  className='cancel-btn'
-                  onClick={cancelNewItem}
-                >Cancel</button>
-              </div>
-              : <button
-                className="add-btn"
-                onClick={() => setNewItem(true)}>
-                Add Todo Item
-              </button>
-          }
-          </>
-    )
+  return (
+    <>
+      <button
+        className="add-btn"
+        onClick={() => toggleAddModalOpen(true)}>
+        Add Todo Item
+      </button>
+      {isAddModalOpen && <AddTodoModal 
+      toggleOpen={() => toggleAddModalOpen(false)}
+      addTodo={(title) => addTodo(title)}
+      ></AddTodoModal>}
+    </>
+  )
 }

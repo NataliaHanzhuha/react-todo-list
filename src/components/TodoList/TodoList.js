@@ -1,6 +1,6 @@
 import { TodoItem } from '../TodoItem/TodoItem';
 
-export function TodoList({ isDone, title, todos, setTodos }) {
+export function TodoList({ todos, setTodos }) {
     function deleteTask(index) {
         const newTodos = todos.filter((todo, i) => i !== index);
 

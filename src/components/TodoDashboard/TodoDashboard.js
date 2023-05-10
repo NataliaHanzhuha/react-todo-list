@@ -29,14 +29,7 @@ export function TodoDashboard() {
       <NewTodoForm addTodo={(title) => addTodo(title)}></NewTodoForm>
 
       <div className='wrapper'>
-
-          <TodoList isDone={false} 
-          title='In Progress'
-          todos={todos}
-          setTodos={(newTodos) => setTodos(newTodos)}></TodoList>
-
-          <TodoList isDone={true} 
-          title='Done'
+        <TodoList
           todos={todos}
           setTodos={(newTodos) => setTodos(newTodos)}></TodoList>
       </div>
