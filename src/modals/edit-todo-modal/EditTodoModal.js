@@ -1,40 +1,38 @@
 import './EditTodoModal.css'
 import { Modal } from '../modal/Modal';
-import { useEffect, useState } from 'react';
+import {useForm} from 'react-hook-form';
 
 export function EditTodoModal({ editedTitle, toggleOpen, editTodo }) {
-    const [title, setTitle] = useState('');
-
-    useEffect(() => {
-        setTitle('');
-    }, [])
-
-    useEffect(() => {
-        setTitle(editedTitle);
-    }, [editedTitle]);
+    const { register, handleSubmit, getValues, formState } = useForm({
+        defaultValues: {title: editedTitle}
+      });
     
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
-          editTodo(title);
+          editTodo(getValues('title'));
           toggleOpen();
         }
     }
+
+    const onSubmit = handleSubmit((data) => {
+        editTodo(data.title); 
+        toggleOpen()
+    })
 
     const body = (
         <div className='content-wrapper'>
             <input
                 type="text"
                 className='todo-input'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                {...register("title", {required: true, minLength: 1})}
                 onKeyDown={handleKeyDown}
             ></input>
 
             <div className="btn-wrapper">
                 <button
                     className='primary-btn'
-                    onClick={() => {editTodo(title); toggleOpen()}}
-                    disabled={!title.trim().length}
+                    onClick={onSubmit}
+                    disabled={!formState.isValid}
                 >Save</button>
                 <button
                     className='cancel-btn'
