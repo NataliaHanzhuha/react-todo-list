@@ -8,25 +8,39 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
     const checkedClass = todo.checked ? 'checked' : '';
     const [isDeleteModalOpen, toggleDeleteModalOpen] = useState(false)
     const [isEditModalOpen, toggleEditModalOpen] = useState(false)
+    const [isDescriptionOpen, toggleDescriptionOpen] = useState(false)
 
     return (
         <>
-            <li className='todo-item'>
-                <input type="checkbox"
-                    value={todo.checked}
-                    checked={todo.checked}
-                    onChange={toggleTodo}></input>
-                <span className={`title ${checkedClass}`}>{`${todo.title}`}</span>
-                <div className="btn-wrapper">
-                    <button onClick={() => toggleEditModalOpen(true)}
-                        className="btn primary-btn"
-                        disabled={todo.checked}
-                    >Edit</button>
-                    <button onClick={() => toggleDeleteModalOpen(true)}
-                        className="btn danger-btn"
-                    >Delete</button>
+            <div className='todo-item'>
+                <div class='todo-item-title'>
+                    <input type="checkbox"
+                        value={todo.checked}
+                        checked={todo.checked}
+                        onChange={toggleTodo}></input>
+                    <div onClick={() => toggleDescriptionOpen(!isDescriptionOpen)}
+                        className={`title ${checkedClass}`}>
+                        {`${todo.title}`}
+                    </div>
+                    <div className="btn-wrapper">
+                        <button onClick={() => toggleEditModalOpen(true)}
+                            className="btn primary-btn"
+                            disabled={todo.checked}
+                        >Edit</button>
+                        <button onClick={() => toggleDeleteModalOpen(true)}
+                            className="btn danger-btn"
+                        >Delete</button>
+                    </div>
                 </div>
-            </li>
+
+                {isDescriptionOpen
+                    && <div className='todo-description'
+                        onClick={() => toggleDescriptionOpen(!isDescriptionOpen)}>
+                        {todo?.description ?? 'No description yet ...'}
+                    </div>
+                }
+
+            </div>
 
             {isDeleteModalOpen && <DeleteTodoModal
                 toggleOpen={() => toggleDeleteModalOpen(false)}
@@ -36,8 +50,8 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
 
             {isEditModalOpen && <FormTodoModal
                 toggleOpen={() => toggleEditModalOpen(false)}
-                editedTitle={todo.title}
-                editTodo={(title) => editTodo(title)}
+                todo={todo}
+                editTodo={(todo) => editTodo(todo)}
             ></FormTodoModal>}
         </>
     )

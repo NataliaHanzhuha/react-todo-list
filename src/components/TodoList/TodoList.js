@@ -18,11 +18,12 @@ export function TodoList({ todos, setTodos }) {
         setTodos(newTodos);
     }
 
-    function editTodo(index, title) {
+    function editTodo(index, newTodo) {
         const newTodos = todos.map((todo, i) => {
             if (index === i) {
-                todo.title = title;
+                todo = {...todo, ...newTodo};
             }
+
             return todo;
         });
 
@@ -32,18 +33,15 @@ export function TodoList({ todos, setTodos }) {
     return <div className='list-wrapper'>
         {
             todos?.length
-                ? <ul>
-                    {todos
-                    ?.sort((a,b) => a.checked < b.checked ? -1 : 1)
+                ? (todos.sort((a,b) => a.checked < b.checked ? -1 : 1)
                     ?.map((todo, index) =>
                         <TodoItem
                             todo={todo}
                             key={index}
                             deleteTodo={() => deleteTask(index)}
                             toggleTodo={() => toggleTodo(todo.title)}
-                            editTodo={(title) => editTodo(index, title)}
-                        />)}
-                </ul>
+                            editTodo={(todo) => editTodo(index, todo)}
+                        />))
                 : <p className='gray center'>Emply list yet...</p>
         }
     </div>

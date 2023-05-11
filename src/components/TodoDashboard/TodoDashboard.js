@@ -12,10 +12,10 @@ export function TodoDashboard() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos))
   })
 
-  function addTodo(title) {
+  function addTodo(todo) {
     const newItem = {
-      title,
-      checked: false
+      checked: false,
+      ...todo
     }
     setTodos([newItem, ...todos]);
   }
@@ -26,7 +26,7 @@ export function TodoDashboard() {
         <h1>To Do List</h1>
       </header>
 
-      <NewTodoForm addTodo={(title) => addTodo(title)}></NewTodoForm>
+      <NewTodoForm addTodo={(todo) => addTodo(todo)}></NewTodoForm>
 
       <div className='wrapper'>
         <TodoList

@@ -13,7 +13,7 @@ export function NewTodoForm({ addTodo }) {
       </button>
       {isAddModalOpen && <FormTodoModal
         toggleOpen={() => toggleAddModalOpen(false)}
-        editTodo={(title) => addTodo(title)}
+        editTodo={(todo) => addTodo(todo)}
       ></FormTodoModal>}
     </>
   )

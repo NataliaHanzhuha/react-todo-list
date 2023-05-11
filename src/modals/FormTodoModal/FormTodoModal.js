@@ -2,24 +2,28 @@ import './FormTodoModal.css'
 import { Modal } from '../Modal/Modal';
 import { useForm } from 'react-hook-form';
 
-export function FormTodoModal({ editedTitle, toggleOpen, editTodo }) {
+export function FormTodoModal({ todo, toggleOpen, editTodo }) {
     const { register, handleSubmit, getValues, formState } = useForm({
-        defaultValues: { title: editedTitle ?? '' }
+        defaultValues:
+        {
+            title: todo?.title ?? '',
+            description: todo?.description ?? ''
+        }
     });
 
-    let modalTitle = editedTitle?.trim()?.length
+    let modalTitle = todo?.title?.trim()?.length
         ? 'Edit Todo Item'
         : 'Add Todo Item';
 
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
-            editTodo(getValues('title'));
+            editTodo(getValues());
             toggleOpen();
         }
     }
 
     const onSubmit = handleSubmit((data) => {
-        editTodo(data.title);
+        editTodo(data);
         toggleOpen()
     })
 
@@ -28,12 +32,20 @@ export function FormTodoModal({ editedTitle, toggleOpen, editTodo }) {
             toggleOpen={toggleOpen}
             content={
                 <div className='form-wrapper'>
+                    <label>Title</label>
+                    
                     <input
                         type="text"
                         className='todo-input'
                         {...register("title", { required: true, minLength: 1 })}
                         onKeyDown={handleKeyDown}
                     ></input>
+
+                    <label>Description</label>
+
+                    <textarea rows={5}
+                        className='todo-input'
+                        {...register('description')}></textarea>
 
                     <div className="btn-wrapper">
                         <button

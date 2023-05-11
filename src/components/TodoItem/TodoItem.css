@@ -9,6 +9,24 @@ input[type="checkbox"] {
     display: flex;
     gap: 5px;
     justify-content: space-between;
+    flex-direction: column;
+    align-items: baseline;
+    border: 1px solid lightgray;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.todo-item-title {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.todo-description {
+    color: darkgray;
+    width: 100%;
 }
 
 .checked {
