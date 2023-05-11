@@ -7,7 +7,7 @@
     color: darkslategray;
 }
 
-.content-wrapper {
+.form-wrapper {
     gap: 20px;
     display: flex;
     flex-direction: column;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AddTodoModal } from '../../modals/AddTodoModal/AddTodoModal';
+import { FormTodoModal } from '../../modals/FormTodoModal/FormTodoModal';
 
 export function NewTodoForm({ addTodo }) {
   const [isAddModalOpen, toggleAddModalOpen] = useState(false)
@@ -11,10 +11,10 @@ export function NewTodoForm({ addTodo }) {
         onClick={() => toggleAddModalOpen(true)}>
         Add Todo Item
       </button>
-      {isAddModalOpen && <AddTodoModal 
-      toggleOpen={() => toggleAddModalOpen(false)}
-      addTodo={(title) => addTodo(title)}
-      ></AddTodoModal>}
+      {isAddModalOpen && <FormTodoModal
+        toggleOpen={() => toggleAddModalOpen(false)}
+        editTodo={(title) => addTodo(title)}
+      ></FormTodoModal>}
     </>
   )
 }
