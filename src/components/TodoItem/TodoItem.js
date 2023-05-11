@@ -8,6 +8,7 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
     const [isDeleteModalOpen, toggleDeleteModalOpen] = useState(false)
     const [isEditModalOpen, toggleEditModalOpen] = useState(false)
     const [isDescriptionOpen, toggleDescriptionOpen] = useState(false)
+    const day = 1000 * 60 * 60 * 24;
 
     const textColor = () => {
         if (!todo.expirationDate) {
@@ -19,7 +20,7 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
         const diffDate = expDate.getTime() - today.getTime();
 
         if (diffDate > 0) {
-            if (diffDate >= 1000 * 60 * 60 * 24) {
+            if (diffDate >= day) {
                 return 'black'
             }
 
