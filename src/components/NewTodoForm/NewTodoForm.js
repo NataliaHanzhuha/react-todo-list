@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormTodoModal } from '../../modals/FormTodoModal/FormTodoModal';
+import { FormTodoModal } from '../../modals/FormTodoModal';
 
 export function NewTodoForm({ addTodo }) {
   const [isAddModalOpen, toggleAddModalOpen] = useState(false)

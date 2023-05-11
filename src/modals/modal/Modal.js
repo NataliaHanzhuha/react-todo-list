@@ -1,6 +1,6 @@
 import './Modal.css';
 
-export function Modal({ modalTitle, toggleOpen, content }) {
+const Modal = ({ children, modalTitle, toggleOpen }) => {
 
     return (<div className='modal-wrapper'
             onClick={toggleOpen}>
@@ -14,8 +14,10 @@ export function Modal({ modalTitle, toggleOpen, content }) {
                 </div>
 
                 <div className="modal-content">
-                  {content}
+                  {children}
                 </div>
             </div>
         </div>);
 }
+
+export default Modal;

@@ -1,4 +1,5 @@
 import { TodoItem } from '../TodoItem/TodoItem';
+import { NewTodoForm } from '../NewTodoForm/NewTodoForm';
 
 export function TodoList({ todos, setTodos }) {
     function deleteTask(index) {
@@ -21,7 +22,7 @@ export function TodoList({ todos, setTodos }) {
     function editTodo(index, newTodo) {
         const newTodos = todos.map((todo, i) => {
             if (index === i) {
-                todo = {...todo, ...newTodo};
+                todo = { ...todo, ...newTodo };
             }
 
             return todo;
@@ -30,10 +31,20 @@ export function TodoList({ todos, setTodos }) {
         setTodos(newTodos);
     }
 
+
+    function addTodo(todo) {
+        const newItem = {
+            checked: false,
+            ...todo
+        }
+        setTodos([newItem, ...todos]);
+    }
+
     return <div className='list-wrapper'>
+        <NewTodoForm addTodo={(todo) => addTodo(todo)}></NewTodoForm>
         {
             todos?.length
-                ? (todos.sort((a,b) => a.checked < b.checked ? -1 : 1)
+                ? (todos.sort((a, b) => a.checked < b.checked ? -1 : 1)
                     ?.map((todo, index) =>
                         <TodoItem
                             todo={todo}

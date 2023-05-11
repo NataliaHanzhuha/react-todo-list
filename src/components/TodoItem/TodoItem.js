@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './TodoItem.css';
 import { DeleteTodoModal } from '../../modals/DeleteTodoModal/DeleteTodoModal';
-import { FormTodoModal } from '../../modals/FormTodoModal/FormTodoModal';
+import { FormTodoModal } from '../../modals/FormTodoModal';
 
 export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
     const checkedClass = todo.checked ? 'checked' : '';
@@ -19,15 +19,11 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
         const today = new Date(Date.now())
         const diffDate = expDate.getTime() - today.getTime();
 
-        if (diffDate > 0) {
-            if (diffDate >= day) {
-                return 'black'
-            }
-
-            return 'orange'
-        }
-
-        return 'red'
+        return diffDate > 0
+            ? diffDate >= day
+                ? 'green'
+                : 'orange'
+            : 'red';
     }
 
     return (
