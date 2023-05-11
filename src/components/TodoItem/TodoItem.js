@@ -19,7 +19,7 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
         const diffDate = expDate.getTime() - today.getTime();
 
         if (diffDate > 0) {
-            if (diffDate >= 1000*60*60*24) {
+            if (diffDate >= 1000 * 60 * 60 * 24) {
                 return 'black'
             }
 
@@ -39,10 +39,10 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
                         onChange={toggleTodo}></input>
                     <div onClick={() => toggleDescriptionOpen(!isDescriptionOpen)}
                         className={`title ${checkedClass}`}
-                        style={{color: textColor()}}>
+                        style={{ color: textColor() }}>
                         {todo.title}
                     </div>
-                    <div style={{color: textColor()}}>{todo?.expirationDate}</div>
+                    <div style={{ color: textColor() }}>{todo?.expirationDate}</div>
                     <div className="btn-wrapper">
                         <button onClick={() => toggleEditModalOpen(true)}
                             className="btn primary-btn"
@@ -57,7 +57,9 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
                 {isDescriptionOpen
                     && <div className='todo-description'
                         onClick={() => toggleDescriptionOpen(!isDescriptionOpen)}>
-                        {todo?.description ?? 'No description yet ...'}
+                        {todo?.description?.trim()?.length
+                            ? todo?.description
+                            : 'No description yet ...'}
                     </div>
                 }
 
