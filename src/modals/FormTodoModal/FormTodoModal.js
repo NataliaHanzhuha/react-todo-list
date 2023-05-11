@@ -45,7 +45,7 @@ export function FormTodoModal({ todo, toggleOpen, editTodo }) {
                     <input className='todo-input'
                         type="date"
                         {...register('expirationDate')}
-                    ></input>ßßß
+                    ></input>
 
                     <div className="btn-wrapper">
                         <button
