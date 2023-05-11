@@ -5,11 +5,11 @@
     background-color: transparent;
     border: 2px solid #e38f30;
     color: darkslategray;
+    font-family: Arial;
 }
 
 textarea {
     resize: none;
-    font-family: Arial;
 }
 
 .form-wrapper {

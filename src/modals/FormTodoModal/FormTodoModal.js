@@ -3,24 +3,18 @@ import { Modal } from '../Modal/Modal';
 import { useForm } from 'react-hook-form';
 
 export function FormTodoModal({ todo, toggleOpen, editTodo }) {
-    const { register, handleSubmit, getValues, formState } = useForm({
+    const { register, handleSubmit, formState } = useForm({
         defaultValues:
         {
             title: todo?.title ?? '',
-            description: todo?.description ?? ''
+            description: todo?.description ?? '',
+            expirationDate: todo?.expirationDate ?? null
         }
     });
 
-    let modalTitle = todo?.title?.trim()?.length
+    const modalTitle = todo?.title?.trim()?.length
         ? 'Edit Todo Item'
         : 'Add Todo Item';
-
-    function handleKeyDown(event) {
-        if (event.key === 'Enter') {
-            editTodo(getValues());
-            toggleOpen();
-        }
-    }
 
     const onSubmit = handleSubmit((data) => {
         editTodo(data);
@@ -33,12 +27,11 @@ export function FormTodoModal({ todo, toggleOpen, editTodo }) {
             content={
                 <div className='form-wrapper'>
                     <label>Title</label>
-                    
+
                     <input
                         type="text"
                         className='todo-input'
                         {...register("title", { required: true, minLength: 1 })}
-                        onKeyDown={handleKeyDown}
                     ></input>
 
                     <label>Description</label>
@@ -46,6 +39,13 @@ export function FormTodoModal({ todo, toggleOpen, editTodo }) {
                     <textarea rows={5}
                         className='todo-input'
                         {...register('description')}></textarea>
+
+                    <label>Expiration Date</label>
+
+                    <input className='todo-input'
+                        type="date"
+                        {...register('expirationDate')}
+                    ></input>ßßß
 
                     <div className="btn-wrapper">
                         <button

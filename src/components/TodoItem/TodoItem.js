@@ -1,14 +1,33 @@
 import { useState } from 'react';
-import { DeleteTodoModal } from '../../modals/DeleteTodoModal/DeleteTodoModal';
 import './TodoItem.css';
+import { DeleteTodoModal } from '../../modals/DeleteTodoModal/DeleteTodoModal';
 import { FormTodoModal } from '../../modals/FormTodoModal/FormTodoModal';
-
 
 export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
     const checkedClass = todo.checked ? 'checked' : '';
     const [isDeleteModalOpen, toggleDeleteModalOpen] = useState(false)
     const [isEditModalOpen, toggleEditModalOpen] = useState(false)
     const [isDescriptionOpen, toggleDescriptionOpen] = useState(false)
+
+    const textColor = () => {
+        if (!todo.expirationDate) {
+            return 'black'
+        }
+
+        const expDate = new Date(todo.expirationDate);
+        const today = new Date(Date.now())
+        const diffDate = expDate.getTime() - today.getTime();
+
+        if (diffDate > 0) {
+            if (diffDate >= 1000*60*60*24) {
+                return 'black'
+            }
+
+            return 'orange'
+        }
+
+        return 'red'
+    }
 
     return (
         <>
@@ -19,9 +38,11 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
                         checked={todo.checked}
                         onChange={toggleTodo}></input>
                     <div onClick={() => toggleDescriptionOpen(!isDescriptionOpen)}
-                        className={`title ${checkedClass}`}>
-                        {`${todo.title}`}
+                        className={`title ${checkedClass}`}
+                        style={{color: textColor()}}>
+                        {todo.title}
                     </div>
+                    <div style={{color: textColor()}}>{todo?.expirationDate}</div>
                     <div className="btn-wrapper">
                         <button onClick={() => toggleEditModalOpen(true)}
                             className="btn primary-btn"

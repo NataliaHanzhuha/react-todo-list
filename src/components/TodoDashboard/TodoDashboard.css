@@ -54,7 +54,7 @@ ul {
     display: flex;
     flex-direction: column;
     min-width: 250px;
-    max-width: 400px;
+    /* max-width: 400px; */
     width: 100%;
     gap: 10px;
 }
