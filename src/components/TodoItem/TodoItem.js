@@ -13,7 +13,7 @@ export function TodoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
     return (
         <>
             <div className='todo-item'>
-                <div class='todo-item-title'>
+                <div className='todo-item-title'>
                     <input type="checkbox"
                         value={todo.checked}
                         checked={todo.checked}
