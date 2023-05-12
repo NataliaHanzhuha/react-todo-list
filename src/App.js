@@ -2,13 +2,14 @@ import './App.css';
 import { TodoDashboard } from './components/TodoDashboard/TodoDashboard';
 
 function App() {
-
-
   return (
-    <>
-      <TodoDashboard></TodoDashboard>
-    </>
+    <div className='page'>
+      <TodoDashboard />
+    </div>
   );
 }
 
 export default App;
+// add routing
+// add multi tasking boards
+//

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './TodoDashboard.css';
-import { NewTodoForm } from '../NewTodoForm/NewTodoForm';
 import { TodoList } from '../TodoList/TodoList';
 
 export function TodoDashboard() {
@@ -12,31 +11,14 @@ export function TodoDashboard() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(todos))
   })
 
-  function addTodo(title) {
-    const newItem = {
-      title,
-      checked: false
-    }
-    setTodos([newItem, ...todos]);
-  }
-
   return (
     <div className='page'>
       <header>
         <h1>To Do List</h1>
       </header>
 
-      <NewTodoForm addTodo={(title) => addTodo(title)}></NewTodoForm>
-
       <div className='wrapper'>
-
-          <TodoList isDone={false} 
-          title='In Progress'
-          todos={todos}
-          setTodos={(newTodos) => setTodos(newTodos)}></TodoList>
-
-          <TodoList isDone={true} 
-          title='Done'
+        <TodoList
           todos={todos}
           setTodos={(newTodos) => setTodos(newTodos)}></TodoList>
       </div>

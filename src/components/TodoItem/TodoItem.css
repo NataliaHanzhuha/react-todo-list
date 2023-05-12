@@ -1,0 +1,60 @@
+
+input[type="checkbox"] {
+    width: 18px;
+    cursor: pointer;
+}
+
+
+.todo-item {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: baseline;
+    border: 1px solid lightgray;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.todo-item-title {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.todo-description {
+    color: darkgray;
+    width: 100%;
+}
+
+.checked {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.gray {
+    color: gray;
+}
+
+.title {
+    flex: 1;
+}
+
+.btn {
+    padding: 3px 10px;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+.btn-wrapper{
+    width: auto !important;
+}

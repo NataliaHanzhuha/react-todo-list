@@ -1,6 +1,7 @@
-import { TodoItem } from '../todo-item/TodoItem';
+import { TodoItem } from '../TodoItem/TodoItem';
+import { NewTodoForm } from '../NewTodoForm/NewTodoForm';
 
-export function TodoList({ isDone, title, todos, setTodos }) {
+export function TodoList({ todos, setTodos }) {
     function deleteTask(index) {
         const newTodos = todos.filter((todo, i) => i !== index);
 
@@ -17,23 +18,42 @@ export function TodoList({ isDone, title, todos, setTodos }) {
 
         setTodos(newTodos);
     }
-    const filteredList = todos?.filter((todo) => todo.checked === isDone)
 
+    function editTodo(index, newTodo) {
+        const newTodos = todos.map((todo, i) => {
+            if (index === i) {
+                todo = { ...todo, ...newTodo };
+            }
+
+            return todo;
+        });
+
+        setTodos(newTodos);
+    }
+
+
+    function addTodo(todo) {
+        const newItem = {
+            checked: false,
+            ...todo
+        }
+        setTodos([newItem, ...todos]);
+    }
 
     return <div className='list-wrapper'>
-        <h2>{title}</h2>
+        <NewTodoForm addTodo={(todo) => addTodo(todo)}></NewTodoForm>
         {
-            filteredList?.length
-                ? <ul>
-                    {filteredList?.map((todo, index) =>
+            todos?.length
+                ? (todos.sort((a, b) => a.checked < b.checked ? -1 : 1)
+                    ?.map((todo, index) =>
                         <TodoItem
                             todo={todo}
                             key={index}
                             deleteTodo={() => deleteTask(index)}
                             toggleTodo={() => toggleTodo(todo.title)}
-                        />)}
-                </ul>
-                : <p className='gray'>Emply list yet</p>
+                            editTodo={(todo) => editTodo(index, todo)}
+                        />))
+                : <p className='gray center'>Emply list yet...</p>
         }
     </div>
 }
